@@ -1,4 +1,4 @@
-Here’s the **README** content in the requested format using `#` for headers and simplified wording:
+Here is your content converted into a `README.md` file format:
 
 ```markdown
 # Hive Employee Analysis
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS departments (
 ```
 
 #### E. Load Data into Hive Tables
-Load the datasets into the Hive tables:
+Now, load the CSV files into the Hive tables:
 ```sql
 LOAD DATA INPATH '/input/employees.csv' INTO TABLE employees_temp;
 LOAD DATA INPATH '/input/departments.csv' INTO TABLE departments;
@@ -183,7 +183,6 @@ SELECT * FROM (
     FROM employees
 ) ranked_employees WHERE salary_rank <= 3;
 ```
-
 ---
 
-Let me know if you need further adjustments!
+Let me know if you need further modifications! You can now directly copy this into your `README.md` file.
