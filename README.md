@@ -1,9 +1,6 @@
-Here is your content converted into a `README.md` file format:
-
-```markdown
 # Hive Employee Analysis
 
-This project demonstrates how to analyze employee data using Hive, Hadoop, and Docker. The dataset contains employee and department information, which we analyze through various SQL queries.
+This project showcases how to analyze employee data using Hive, Hadoop, and Docker. It includes a dataset with employee and department details, which are examined through various SQL queries.
 
 ## Prerequisites
 
@@ -29,11 +26,12 @@ This project uses two datasets:
 
 ### 1. Docker Setup
 
-#### A. Start the Hadoop Cluster
+####  A. Start the Hadoop Cluster
 To start the Hadoop cluster, run the following command:
 ```sh
 docker compose up -d
 ```
+
 
 #### B. Copy the CSV Files to Docker Container
 To copy the CSV datasets (`employees.csv` and `departments.csv`) into the Docker container, run:
@@ -123,27 +121,27 @@ LOAD DATA INPATH '/input/departments.csv' INTO TABLE departments;
 
 ### 3. Running Queries
 
-#### A. Employees Who Joined After 2015
+#### A. Retrieve_Employees_After_2015
 ```sql
 SELECT * FROM employees WHERE join_date > '2015-12-31';
 ```
 
-#### B. Average Salary Per Department
+#### B. Retrieve employees whose salary is above the average salary of their department
 ```sql
 SELECT department, AVG(salary) AS avg_salary FROM employees GROUP BY department;
 ```
 
-#### C. Employees Assigned to 'Alpha' Project
+#### C. Identify employees working on the 'Alpha' project
 ```sql
 SELECT * FROM employees WHERE project = 'Alpha';
 ```
 
-#### D. Count of Employees in Each Job Role
+#### D. Count how many employees are there in each job role
 ```sql
 SELECT job_role, COUNT(*) AS employee_count FROM employees GROUP BY job_role;
 ```
 
-#### E. Employees Earning Above the Department's Average Salary
+#### E. Retrieve employees whose salary is above the average salary of their department
 ```sql
 SELECT e.* FROM employees e
 JOIN (SELECT department, AVG(salary) AS avg_salary FROM employees GROUP BY department) d
@@ -151,31 +149,31 @@ ON e.department = d.department
 WHERE e.salary > d.avg_salary;
 ```
 
-#### F. Department With the Highest Number of Employees
+#### F. Find the department with the highest number of employees
 ```sql
 SELECT department, COUNT(*) AS emp_count FROM employees GROUP BY department ORDER BY emp_count DESC LIMIT 1;
 ```
 
-#### G. Exclude Employees With Null Values
+#### G. Check for employees with null values in any column and exclude them from analysis
 ```sql
 SELECT * FROM employees WHERE emp_id IS NOT NULL AND name IS NOT NULL AND age IS NOT NULL AND
 job_role IS NOT NULL AND salary IS NOT NULL AND project IS NOT NULL AND join_date IS NOT NULL AND department IS NOT NULL;
 ```
 
-#### H. Employee Details With Department Location
+#### H. Join the employees and departments tables to display employee details along with department location
 ```sql
 SELECT e.*, d.location FROM employees e
 JOIN departments d ON e.department = d.department_name;
 ```
 
-#### I. Rank Employees by Salary Within Departments
+#### I. Rank employees within each department based on salary
 ```sql
 SELECT emp_id, name, department, salary,
 RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank
 FROM employees;
 ```
 
-#### J. Top 3 Highest-Paid Employees in Each Department
+#### J. Find the top 3 highest-paid employees in each department
 ```sql
 SELECT * FROM (
     SELECT emp_id, name, department, salary,
